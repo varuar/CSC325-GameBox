@@ -1,1 +1,5 @@
-# CSC325-MiniGameHUB
+# CSC325-GameBox
+# WRSPM 
+
+
+
