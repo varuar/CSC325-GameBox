@@ -17,7 +17,7 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // Implement your login logic here
+        
         if ("admin".equals(username) && "password".equals(password)) {
             System.out.println("Login successful!");
         } else {
