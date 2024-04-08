@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class LoginApp extends Application {
 
     @Override
@@ -19,5 +21,15 @@ public class LoginApp extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    // Method to switch to the game selection screen
+    public static void switchToGameSelectionScreen(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.load(LoginApp.class.getResource("/org/openjfx/gamebox/game_selection.fxml"));
+            primaryStage.setScene(new Scene(root, 600, 600));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -7,18 +7,28 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.LoginController"
-      prefWidth="600.0" prefHeight="400.0" style="-fx-background-color: #00FF00;">
+<Pane prefHeight="559.0" prefWidth="573.0" style="-fx-background-color: #00FF00;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.LoginController">
   <children>
-    <Label layoutX="273.0" layoutY="105.0" text="Username"/>
-    <Label layoutX="274.0" layoutY="192.0" text="Password"/>
-    <TextField fx:id="usernameField" layoutX="225.0" layoutY="142.0"/>
-    <PasswordField fx:id="passwordField" layoutX="226.0" layoutY="229.0"/>
-    <Button fx:id="loginButton" layoutX="215.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleLoginAction" text="Login"/>
-    <Button fx:id="registerButton" layoutX="325.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleRegisterAction" text="Register"/>
-    <Label layoutX="177.0" layoutY="14.0" prefHeight="25.0" prefWidth="267.0" text="GameBox">
+    <!-- Login Section -->
+    <Label layoutX="268.0" layoutY="331.0" text="Username" />
+    <Label layoutX="269.0" layoutY="401.0" text="Password" />
+    <TextField fx:id="usernameField" alignment="CENTER" layoutX="219.0" layoutY="365.0" promptText="Username" />
+    <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="220.0" layoutY="438.0" promptText="Password" />
+    <Button fx:id="loginButton" layoutX="272.0" layoutY="482.0" mnemonicParsing="false" onAction="#handleLoginAction" text="Login" />
+
+    <!-- Registration Section -->
+    <Label layoutX="249.0" layoutY="80.0" text="Register Username" />
+    <TextField fx:id="RegisterUsernameField" alignment="CENTER" layoutX="219.0" layoutY="100.0" promptText="Username" />
+    <Label layoutX="257.0" layoutY="141.0" text="Register Email" />
+    <TextField fx:id="RegisterEmailField" alignment="CENTER" layoutX="219.0" layoutY="170.0" promptText="Email" />
+    <Label layoutX="250.0" layoutY="212.0" text="Register Password" />
+    <PasswordField fx:id="RegisterPasswordField" alignment="CENTER" layoutX="220.0" layoutY="240.0" promptText="Password" />
+    <Button fx:id="registerButton" layoutX="265.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleRegisterAction" text="Register" />
+
+    <!-- App Title -->
+    <Label layoutX="220.0" layoutY="14.0" prefHeight="66.0" prefWidth="158.0" text="GameBox">
       <font>
-        <Font size="60.0"/>
+        <Font size="35.0" />
       </font>
     </Label>
   </children>
