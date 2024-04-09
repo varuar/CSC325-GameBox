@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.SelectionPageController">
+    <children>
+        <Button fx:id="chessbtn" layoutX="33.0" layoutY="44.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="222.0" text="Chess" />
+        <Button fx:id="spacebtn" layoutX="318.0" layoutY="44.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="222.0" text="Space Invader" />
+        <Button fx:id="carbtn" layoutX="27.0" layoutY="229.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="222.0" text="CarGame" />
+        <Button fx:id="tilebtn" layoutX="318.0" layoutY="229.0" mnemonicParsing="false" prefHeight="118.0" prefWidth="222.0" text="TileGame" />
+    </children>
+</AnchorPane>

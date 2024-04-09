@@ -1,35 +1,49 @@
 package org.openjfx.gamebox;
 
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
 
 public class LoginController {
 
     @FXML
-    private TextField usernameField;
+    private Button registerPageButton;
 
     @FXML
     private PasswordField passwordField;
 
     @FXML
-    protected void handleLoginAction() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+    private TextField emailField;
 
-        if ("admin".equals(username) && "password".equals(password)) {
-            System.out.println("Login successful!");
-            // Switch to the game selection screen
-            Stage stage = (Stage) usernameField.getScene().getWindow();
-            LoginApp.switchToGameSelectionScreenOnLogin(stage);
-        } else {
-            System.out.println("Login failed!");
+    @FXML
+    void handleLoginAction(ActionEvent event) {
+        signInUser();
+    }
+
+    @FXML
+    protected void signInUser() {
+        UserRecord.CreateRequest request1 = new UserRecord.CreateRequest()
+                .setEmail(emailField.getText())
+                .setPassword(passwordField.getText());
+        UserRecord userRecord2;
+        try {
+            userRecord2 = LoginApp.fauth.getUserByEmail(emailField.getText());
+            System.out.println(userRecord2);
+            System.out.println("Sign-in successful.");
+            switchToPrimary();
+        } catch (IOException | FirebaseAuthException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
-    protected void handleRegisterAction() {
-        System.out.println("Register button clicked!");
+    private void switchToPrimary() throws IOException {
+        LoginApp.setRoot("RegisterPage");
     }
 }
