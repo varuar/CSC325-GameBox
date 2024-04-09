@@ -12,7 +12,6 @@ public class LoginApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FirestoreContext firestoreContext = new FirestoreContext();
         Parent root = FXMLLoader.load(getClass().getResource("/org/openjfx/gamebox/login_page.fxml"));
         primaryStage.setTitle("Login Page");
         primaryStage.setScene(new Scene(root, 600, 600));
@@ -23,7 +22,6 @@ public class LoginApp extends Application {
         launch(args);
     }
 
-    // Method to switch to the game selection screen
     public static void switchToGameSelectionScreen(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(LoginApp.class.getResource("/org/openjfx/gamebox/game_selection.fxml"));
@@ -31,5 +29,9 @@ public class LoginApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void switchToGameSelectionScreenOnLogin(Stage primaryStage) {
+        switchToGameSelectionScreen(primaryStage);
     }
 }
