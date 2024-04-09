@@ -1,5 +1,9 @@
 package org.openjfx.gamebox;
 
+import com.google.cloud.firestore.*;
+import com.google.cloud.firestore.Firestore;
+import com.google.firebase.auth.*;
+import com.google.firebase.auth.FirebaseAuth;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,30 +12,36 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
 public class LoginApp extends Application {
+    public static Scene scene;
+
+    public static Firestore fstore;
+    public static FirebaseAuth fauth;
+    private final FirestoreContext contxtFirebase = new FirestoreContext();
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/org/openjfx/gamebox/login_page.fxml"));
-        primaryStage.setTitle("Login Page");
-        primaryStage.setScene(new Scene(root, 600, 600));
-        primaryStage.show();
+    public void start(Stage stage) throws IOException {
+        fstore = contxtFirebase.firebase();
+        fauth = FirebaseAuth.getInstance();
+
+        scene = new Scene(loadFXML("login_page"), 640, 480);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    static void setRoot(String fxml) throws IOException {
+        scene.setRoot(loadFXML(fxml));
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginApp.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 
-    public static void switchToGameSelectionScreen(Stage primaryStage) {
-        try {
-            Parent root = FXMLLoader.load(LoginApp.class.getResource("/org/openjfx/gamebox/game_selection.fxml"));
-            primaryStage.setScene(new Scene(root, 600, 600));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public static void switchToGameSelectionScreenOnLogin(Stage primaryStage) {
-        switchToGameSelectionScreen(primaryStage);
-    }
 }
