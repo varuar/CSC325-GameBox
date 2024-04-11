@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="RegisterPgebtn" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00FF00;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.LoginController">
-  <children>
     <Label layoutX="285.0" layoutY="102.0" text="Email" />
     <Label layoutX="274.0" layoutY="192.0" text="Password" />
     <TextField fx:id="emailField" alignment="CENTER" layoutX="226.0" layoutY="144.0" promptText="email" />
@@ -19,6 +18,5 @@
         <Font size="60.0" />
       </font>
     </Label>
-    <Button fx:id="Regsiterpgebtn" layoutX="337.0" layoutY="295.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Register" />
-  </children>
+  <Button fx:id="Regsiterpgebtn" layoutX="337.0" layoutY="295.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Register" />
 </Pane>
