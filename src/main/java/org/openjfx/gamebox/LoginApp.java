@@ -42,6 +42,4 @@ public class LoginApp extends Application {
     public static void main(String[] args) {
         launch();
     }
-
-
-}
+    }

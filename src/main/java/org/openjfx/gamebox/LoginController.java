@@ -36,12 +36,15 @@ public class LoginController {
             userRecord2 = LoginApp.fauth.getUserByEmail(emailField.getText());
             System.out.println(userRecord2);
             System.out.println("Sign-in successful.");
-            switchToPrimary();
+            switchtoSelect();
         } catch (IOException | FirebaseAuthException e) {
             throw new RuntimeException(e);
         }
     }
 
+    private void switchtoSelect() throws IOException {
+        LoginApp.setRoot("game_selection");
+    }
     @FXML
     private void switchToPrimary() throws IOException {
         LoginApp.setRoot("RegisterPage");
