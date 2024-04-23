@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.Label?>
 
-<StackPane xmlns="http://javafx.com/javafx/17.0.1" prefWidth="600" prefHeight="400">
-    <Label text="Placeholder for Swimming Mania Game" style="-fx-font-size: 24px;" />
-</StackPane>
+<AnchorPane fx:id="rootPane" onKeyPressed="#handleKeyPress" prefHeight="530" prefWidth="740" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.SwimmingManiaController">
+    <children>
+        <ImageView fx:id="backgroundImage" fitHeight="530" fitWidth="740" />
+        <ImageView fx:id="carImage" fitHeight="57" fitWidth="36" layoutX="431" layoutY="445" />
+        <ImageView fx:id="timerImage" fitHeight="20" fitWidth="30" layoutX="610" layoutY="10" preserveRatio="true" />
+        <Label fx:id="timerLabel" layoutX="640" layoutY="10" />
+        <Label fx:id="leaderboardLabel" layoutX="10" layoutY="40" />
+        <Button fx:id="startButton" layoutX="10" layoutY="10" onAction="#handlePlayButtonClick" text="Start Game" />
+        <Button fx:id="stopButton" layoutX="110" layoutY="10" onAction="#handleStopButtonClick" text="Stop" visible="false" />
+        <Button fx:id="restartButton" layoutX="210" layoutY="10" onAction="#handleRestartButtonClick" text="Restart" visible="false" />
+        <Button fx:id="resumeButton" layoutX="310" layoutY="10" onAction="#handleResumeButtonClick" text="Resume" visible="false" />
+        <Button fx:id="endGameButton" layoutX="410" layoutY="10" onAction="#handleEndGameButtonClick" text="End Game" visible="false" />
+        <Button fx:id="leaderboardButton" layoutX="645.0" layoutY="43.0" onAction="#handleLeaderboardButtonClick" text="Leaderboard" />
+    </children>
+</AnchorPane>

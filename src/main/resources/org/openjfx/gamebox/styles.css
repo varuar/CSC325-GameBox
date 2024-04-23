@@ -1,0 +1,16 @@
+.button {
+    -fx-font-size: 18px;
+    -fx-background-color: transparent; /* Set background color to transparent */
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-min-width: 200px; /* Set the minimum width */
+    -fx-min-height: 200px; /* Set the minimum height */
+    -fx-background-image: url("images/image1.jpg"); /* Set the background image */
+    -fx-background-size: cover; /* Ensure the background image covers the entire button */
+}
+
+.button:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.5); /* Darken the background color on hover */
+}
