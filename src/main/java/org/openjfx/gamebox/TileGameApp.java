@@ -20,7 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class TileGameApp {
+public class TileGameApp extends LoginApp {
     // Label to display timer countdown
     @FXML
     private Label timerLabel;
