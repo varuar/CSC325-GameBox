@@ -200,12 +200,36 @@ public class SwimmingManiaController {
     }
 
     private void generateRandomObstacle() {
+        double minX = 180;
+        double maxX = 450;
+        double randomX = minX + Math.random() * (maxX - minX);
+        double minY = -100; // Minimum Y-coordinate for spawning
+        double maxY = -50;  // Maximum Y-coordinate for spawning
+
+        // Check for collision with existing obstacles
+        boolean overlap = true;
+        while (overlap) {
+            overlap = false;
+            randomX = minX + Math.random() * (maxX - minX);
+            for (ImageView obstacle : obstacles) {
+                double obstacleX = obstacle.getLayoutX();
+                double obstacleY = obstacle.getLayoutY();
+                if (randomX >= obstacleX - 50 && randomX <= obstacleX + 50 &&
+                        maxY >= obstacleY - 50 && maxY <= obstacleY + 50) {
+                    overlap = true;
+                    break;
+                }
+            }
+        }
+
         ImageView obstacle = new ImageView(new Image(getClass().getResourceAsStream("/org/openjfx/gamebox/carimages/car_mask.png")));
-        obstacle.setLayoutX(Math.random() * 600);
-        obstacle.setLayoutY(-100);
+        obstacle.setLayoutX(randomX);
+        obstacle.setLayoutY(minY);
         rootPane.getChildren().add(obstacle);
         obstacles.add(obstacle);
     }
+
+
 
     private void endGame() {
         gameStarted = false;
