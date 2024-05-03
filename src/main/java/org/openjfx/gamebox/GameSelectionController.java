@@ -32,7 +32,7 @@ public class GameSelectionController {
     }
 
     @FXML
-    protected void handleGameSelection(ActionEvent event) {
+    protected void handleGameSelection(ActionEvent event) throws IOException {
         Button clickedButton = (Button) event.getSource();
         String gameName = clickedButton.getText();
 
@@ -44,7 +44,7 @@ public class GameSelectionController {
                 loadGameScreen("tile_game.fxml", "Tile Game");
                 break;
             case "Space Invaders":
-                loadGameScreen("spaceinvaders_game.fxml", "Space Invaders Game");
+                loadSpaceInvadersGame("Space Invaders Game");
                 break;
             case "Swimming Mania":
                 loadGameScreen("swimmingmania_game.fxml", "Swimming Mania Game");
@@ -52,6 +52,13 @@ public class GameSelectionController {
             default:
                 System.out.println("Invalid game selection");
         }
+    }
+    private void loadSpaceInvadersGame(String gameTitle) throws IOException {
+        SpaceInvadersApplication spaceInvadersApp = new SpaceInvadersApplication();
+        Stage stage = new Stage();
+        spaceInvadersApp.start(stage);
+        stage.setTitle(gameTitle);
+        stage.show();
     }
 
     private void loadGameScreen(String fxmlFileName, String gameTitle) {
