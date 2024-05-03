@@ -20,6 +20,7 @@ public class LoginApp extends Application {
     public static FirebaseAuth fauth;
     private final FirestoreContext contxtFirebase = new FirestoreContext();
 
+
     @Override
     public void start(Stage stage) throws IOException {
         fstore = contxtFirebase.firebase();

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="1080.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.Tile_result">
+    <top>
+        <Pane prefHeight="49.0" prefWidth="1080.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="24.0" layoutY="7.0" text="Tile Game" textFill="#1e1e94">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+    </top>
+    <center>
+        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="playAgain" layoutX="291.0" layoutY="191.0" mnemonicParsing="false" onAction="#showPlayGame" prefHeight="70.0" prefWidth="499.0" style="-fx-background-color: white; -fx-border-color: #1e1e94; -fx-background-radius: 10; -fx-border-radius: 10;" text="Play Again" textFill="#1e1e94">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="91.0" layoutY="115.0" prefHeight="65.0" prefWidth="899.0" text="Congratulations" textFill="#1e1e94" textOverrun="CENTER_ELLIPSIS">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Button fx:id="close" layoutX="291.0" layoutY="285.0" mnemonicParsing="false" onAction="#exit" prefHeight="70.0" prefWidth="499.0" style="-fx-background-color: white; -fx-border-color: #1e1e94; -fx-background-radius: 10; -fx-border-radius: 10;" text="Close Game" textFill="#1e1e94">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
+    </center>
+</BorderPane>
