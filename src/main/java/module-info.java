@@ -7,6 +7,7 @@ module org.openjfx.gamebox {
     requires firebase.admin;
     requires com.google.auth.oauth2;
     requires com.google.auth;
+    requires google.cloud.core;
 
 
     opens org.openjfx.gamebox to javafx.fxml;
