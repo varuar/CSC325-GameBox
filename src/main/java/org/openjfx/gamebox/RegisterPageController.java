@@ -6,8 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import com.google.cloud.firestore.Firestore;
+import com.google.firebase.cloud.FirestoreClient;
+
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterPageController {
 
@@ -42,21 +47,31 @@ public class RegisterPageController {
                 .setPhoneNumber(registerphoneTextField.getText())
                 .setDisplayName(registernameTextField.getText())
                 .setDisabled(false);
-        UserRecord userRecord;
-        try {
-            userRecord = LoginApp.fauth.createUser(request);
-            System.out.println("Successfully created new user with Firebase Uid: " + userRecord.getUid()
-                    + " check Firebase > Authentication > Users tab");
-            System.out.println(userRecord.getUid());
-            return true;
 
+        try {
+            // Create user with Firebase Authentication
+            UserRecord userRecord = LoginApp.fauth.createUser(request);
+            System.out.println("Successfully created new user with Firebase Uid: " + userRecord.getUid());
+
+            // Save user data to Firestore
+            Firestore db = FirestoreClient.getFirestore();  // Get Firestore instance
+            Map<String, Object> userData = new HashMap<>();
+            userData.put("email", registeremailTextField.getText());
+            userData.put("password", registerpasswordTextField.getText()); // Note: Storing passwords in plain text is not recommended
+            userData.put("phone", registerphoneTextField.getText());
+            userData.put("displayName", registernameTextField.getText());
+
+            // Add a new document with the user UID as the document ID
+            db.collection("users").document(userRecord.getUid()).set(userData);
+
+            return true;
         } catch (FirebaseAuthException ex) {
             ex.printStackTrace();
-            System.out.println("Error creating a new user in the firebase");
-            System.out.println(registeremailTextField.getText());
-            System.out.println(registerpasswordTextField.getText());
-            System.out.println(registerphoneTextField.getText());
-            System.out.println(registernameTextField.getText());
+            System.out.println("Error creating a new user in Firebase");
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error accessing Firestore");
             return false;
         }
     }

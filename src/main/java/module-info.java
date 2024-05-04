@@ -8,6 +8,7 @@ module org.openjfx.gamebox {
     requires com.google.auth.oauth2;
     requires com.google.auth;
     requires google.cloud.core;
+    requires com.google.api.apicommon;
 
 
     opens org.openjfx.gamebox to javafx.fxml;
