@@ -9,7 +9,7 @@
     <Label layoutX="224.0" layoutY="192.0" text="Password" />
     <TextField fx:id="emailField" alignment="CENTER" layoutX="176.0" layoutY="144.0" promptText="email" />
     <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="176.0" layoutY="229.0" promptText="password" />
-    <Button fx:id="loginButton" layoutX="165.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleLoginAction" text="Login" />
+    <Button fx:id="loginButton" layoutX="165.0" layoutY="295.0" mnemonicParsing="false" onAction="#signInUser" text="Login" />
     <Label layoutX="127.0" layoutY="14.0" prefHeight="25.0" prefWidth="267.0" text="GameBox">
         <font>
             <Font size="60.0" />
