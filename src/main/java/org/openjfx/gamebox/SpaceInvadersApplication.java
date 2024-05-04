@@ -150,8 +150,8 @@ public class SpaceInvadersApplication extends LoginApp{
                                 enemy.dead = true;
                                 s.dead = true;
                                 enemiesRemaining -= 1;
-                                if(enemiesRemaining == 0){gameOver(true);}
                                 score += 100;
+                                if(enemiesRemaining == 0){gameOver(true);}
                             }
                         });
                         sprites().stream().filter(e -> e.type.equals("enemybullet")).forEach(enemy -> {
