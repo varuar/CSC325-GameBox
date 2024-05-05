@@ -62,7 +62,7 @@ public class RegisterPageController {
             userData.put("displayName", registernameTextField.getText());
 
             // Add a new document with the user UID as the document ID
-            db.collection("users").document(userRecord.getUid()).set(userData);
+            db.collection("users2").document(userRecord.getUid()).set(userData);
 
             return true;
         } catch (FirebaseAuthException ex) {

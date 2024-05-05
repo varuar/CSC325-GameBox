@@ -25,10 +25,6 @@ public class TileGameApp extends LoginApp {
     @FXML
     private Label timerLabel;
 
-    private int remainingTime = 10;  // Timer for game countdown
-    private ScoreCollectionController scoreCollector;
-    private Timeline gameTimer;  // Timer for managing game countdown
-
     // Buttons for the game tiles, organized by rows and columns
     @FXML
     private Button r1c1, r1c2, r1c3, r1c4;
@@ -48,79 +44,68 @@ public class TileGameApp extends LoginApp {
     private Boolean[][] tileVisibility;
     private int SelectedTileRow = -1;
     private int SelectedTileCol = -1;
-    private boolean gameEnded = false;  // Flag to track if the game has ended
 
     // Array of buttons for easier access
     private Button[][] buttons;
 
     // Array representing valid paths in the game grid
     private int[][] pathGrid;
-    //  int remainingTime = 10;  // Timer for game countdown
+    int remainingTime = 10;  // Timer for game countdown
 
     public TileGameApp() {
     }
 
-    private void setupTimer() {
-        gameTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            if (remainingTime == 0) {
-                gameTimer.stop();  // Stop the timer to prevent further decrements
-                showResult("Time Out! Play Again");
-            } else {
-                remainingTime--;
-                timerLabel.setText(remainingTime + " Sec");
-            }
-        }));
-        gameTimer.setCycleCount(Timeline.INDEFINITE);
-        gameTimer.play();
-    }
-
+    // Method to show the game result in a new window
     private void showResult(String message) {
-        gameTimer.stop();  // Ensure the timer is stopped when showing results
-
-        // Update the score in Firestore only once per game end
-        if (!gameEnded) {
-            int finalTime = 10 - remainingTime;  // Assuming 10 is the total game time
-            scoreCollector.updateGameScore("TileGameBestTime", finalTime);
-            gameEnded = true;  // Mark the game as ended
-        }
-
-        // UI code to display results, ensure stage is handled correctly
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("tile_finish.fxml"));
+            FXMLLoader loader = new FXMLLoader(TileGameApp.class.getResource("tile_finish.fxml"));
             Parent summaryRoot = loader.load();
-            Tile_result controller = (Tile_result) loader.getController();
+            Tile_result controller = (Tile_result)loader.getController();
             controller.setTitle(message);
 
-            Scene currentScene = rootPane.getScene();
+            Scene currentScene = this.rootPane.getScene();
             if (currentScene != null) {
                 Stage stage = (Stage) currentScene.getWindow();
                 if (stage != null) {
-                    stage.setScene(new Scene(summaryRoot, 1080.0, 620.0));
+                    Scene scene = new Scene(summaryRoot, 1080.0, 620.0);
+                    stage.setScene(scene);
                     stage.show();
                 } else {
                     System.err.println("Stage is null");
                 }
+            } else {
+                System.err.println("Scene is null");
             }
-        } catch (IOException e) {
+        } catch (IOException var7) {
+            var7.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // Method to handle game start or restart
-    public void startOrRestartGame() {
-        remainingTime = 10;  // Reset the timer
-        gameEnded = false;  // Reset game end flag
-        setupTimer();  // Re-setup or restart the timer
+
+    // Setup the timer for the game using a Timeline
+    private void setupTimer() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.0), new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                if (TileGameApp.this.remainingTime == 0) {
+                    TileGameApp.this.showResult("Time Out! Play Again");
+                }
+
+                --TileGameApp.this.remainingTime;
+                TileGameApp.this.timerLabel.setText(TileGameApp.this.remainingTime + " Sec");
+            }
+        }, new KeyValue[0]));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
-
-
 
     // Handle mouse clicks on game tiles
     private void handleMouseClick(MouseEvent e, int finalI, int finalJ) {
         // Checking if the tile clicked is adjacent to the last selected tile
         if ((this.SelectedTileRow + 1 == finalI || this.SelectedTileRow - 1 == finalI) && this.SelectedTileCol == finalJ ||
                 this.SelectedTileRow == finalI && (this.SelectedTileCol + 1 == finalJ || this.SelectedTileCol - 1 == finalJ) ||
-                this.SelectedTileRow == -1 && finalI == 4) {
+                this.SelectedTileRow == -1 && finalI == 4) {  // Initial selection condition
 
             if (finalI == 0) {
                 this.showResult("Congratulations! You Won the Game");
@@ -206,7 +191,5 @@ public class TileGameApp extends LoginApp {
         this.pathGrid = new int[][]{{1}, {1}, {1}, {1, 2}, {2}};
         this.setupTimer();
         this.addButtonsEventListener();
-        scoreCollector = new ScoreCollectionController();
-
     }
 }
