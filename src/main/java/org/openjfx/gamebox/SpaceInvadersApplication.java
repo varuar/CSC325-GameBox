@@ -31,6 +31,7 @@ public class SpaceInvadersApplication extends LoginApp{
     private Pane stackPane = new Pane(root, ui);
 
     private double t = 0;
+    private String userEmail; // Assume this is set when the user logs in
 
     private boolean moveLeft = false;
     private boolean moveRight = false;
@@ -50,6 +51,7 @@ public class SpaceInvadersApplication extends LoginApp{
     private int score = 0;
 
     private int enemiesRemaining = 5;
+    private ScoreCollectionController scoreCollector = new ScoreCollectionController();
 
     Label darkLightLabel = new Label("Dark Mode / Light Mode: Press r");
     Label gameStatus = new Label("Score: " + score);
@@ -229,22 +231,26 @@ public class SpaceInvadersApplication extends LoginApp{
         root.getChildren().add(player);
     }
 
-    private void gameOver(boolean win){
-        if (!win){
+    private void gameOver(boolean win) {
+        if (!win) {
             gameStatus.setText("You Lose! Score: " + score + " Try again: press ESC");
             System.out.println("Loser");
-            //gamePaused = true;
-            gameOver = true;
-            //gameStatus.setText("You Lose! Score: " + score + " Try again: press ESC");
-        }
-        else{
+        } else {
             gameStatus.setText("You Win! Score: " + score + " Try again: press ESC");
             System.out.println("Winner");
-            //gamePaused = true;
-            gameOver = true;
-            //gameStatus.setText("You Win! Score: " + score + " Try again: press ESC");
+        }
+        gameOver = true;
+        updateScoreInFirestore(score); // Call to update the score in Firestore
+    }
+
+    private void updateScoreInFirestore(int finalScore) {
+        if (UserSession.getInstance().getUserEmail() != null) {
+            scoreCollector.updateGameScore("SpaceInvaders", finalScore);
+        } else {
+            System.out.println("User email not set. Cannot update score.");
         }
     }
+
 
     private void shoot(Sprite who){
         /*if (darkMode){
