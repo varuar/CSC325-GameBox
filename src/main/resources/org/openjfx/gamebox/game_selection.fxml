@@ -19,7 +19,7 @@
         </image>
     </ImageView>
     <!-- Chess -->
-    <Button fx:id="game1Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="83.0" prefWidth="139.0" text="Chess" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Button fx:id="game1Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="46.0" prefWidth="204.0" text="Chess" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <ImageView fitHeight="202.0" fitWidth="200.0">
         <image>
             <Image url="@images/image3.jpg" />
@@ -27,7 +27,7 @@
     </ImageView>
 
     <!-- Space Invaders -->
-    <Button fx:id="game3Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="41.0" prefWidth="124.0" text="Space Invaders" />
+    <Button fx:id="game3Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="42.0" prefWidth="205.0" text="Space Invaders" textAlignment="CENTER" />
     <ImageView fitHeight="204.0" fitWidth="200.0" GridPane.columnIndex="1">
         <image>
             <Image url="@images/image2.jpg" />
@@ -35,10 +35,10 @@
     </ImageView>
 
     <!-- Swimming Mania -->
-    <Button fx:id="game4Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="76.0" prefWidth="170.0" text="Swimming Mania" GridPane.rowIndex="1" />
+    <Button fx:id="game4Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="47.0" prefWidth="208.0" text="Swimming Mania" GridPane.rowIndex="1" />
 
     <!-- Tile Game -->
-    <Button fx:id="game2Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="30.0" prefWidth="126.0" text="Tile Game" GridPane.columnIndex="1" />
+    <Button fx:id="game2Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="42.0" prefWidth="200.0" text="Tile Game" GridPane.columnIndex="1" />
 
     <columnConstraints>
         <ColumnConstraints prefWidth="200.0" />
