@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
+import java.net.URL;
 
 public class GameSelectionController {
 
@@ -38,7 +39,7 @@ public class GameSelectionController {
 
         switch (gameName) {
             case "Chess":
-                loadGameScreen("chess_game.fxml", "Chess Game");
+                loadChessGame();
                 break;
             case "Tile Game":
                 loadGameScreen("tile_game.fxml", "Tile Game");
@@ -60,6 +61,30 @@ public class GameSelectionController {
         stage.setTitle(gameTitle);
         stage.show();
     }
+
+    private void loadChessGame() throws IOException {
+
+//        Model game = new Game();
+////        TextView textView = new TextView(game);
+////        Controller controller = new Controller(game, textView);
+////        controller.play();
+        Stage stage = new Stage();
+        stage.setTitle("Chess");
+        stage.setResizable(false);
+        URL fxmlLocation = getClass().getResource("Menu.fxml");
+        FXMLLoader root = new FXMLLoader(fxmlLocation);
+        Scene scene = new Scene(root.load());
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
+
+
+
+
+
+
 
     private void loadGameScreen(String fxmlFileName, String gameTitle) {
         try {

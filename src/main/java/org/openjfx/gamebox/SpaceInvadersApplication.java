@@ -4,13 +4,10 @@ package org.openjfx.gamebox;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
@@ -26,19 +23,13 @@ import java.util.stream.Collectors;
 public class SpaceInvadersApplication extends LoginApp{
 
     private Pane root = new Pane();
-    private Pane ui = new Pane();
-
-    private Pane stackPane = new Pane(root, ui);
 
     private double t = 0;
-    private String userEmail; // Assume this is set when the user logs in
 
     private boolean moveLeft = false;
     private boolean moveRight = false;
 
     private boolean gamePaused = false;
-
-    private boolean gameOver = false;
 
     private boolean darkMode = true;
 
@@ -48,25 +39,11 @@ public class SpaceInvadersApplication extends LoginApp{
 
     private Sprite player = new Sprite(300, 750, 40, 40, "player", Color.BLUE);
 
-    private int score = 0;
-
-    private int enemiesRemaining = 5;
-    private ScoreCollectionController scoreCollector = new ScoreCollectionController();
-
-    Label darkLightLabel = new Label("Dark Mode / Light Mode: Press r");
-    Label gameStatus = new Label("Score: " + score);
 
     private Parent createContent(){
         root.setPrefSize(600, 800);
-        ui.setPrefSize(600, 800);
         root.getChildren().add(player);
-        ui.getChildren().add(darkLightLabel);
-        ui.getChildren().add(gameStatus);
-        darkLightLabel.setLayoutX(10);
-        darkLightLabel.setLayoutY(10);
-        gameStatus.setLayoutX(250);
-        gameStatus.setLayoutY(10);
-        /*if (darkMode) {
+        if (darkMode) {
             BackgroundFill darkBackgroundFill = new BackgroundFill(Color.BLACK, null, null);
             Background darkBackground = new Background(darkBackgroundFill);
             root.setBackground(darkBackground);
@@ -75,7 +52,7 @@ public class SpaceInvadersApplication extends LoginApp{
             BackgroundFill darkBackgroundFill = new BackgroundFill(Color.WHITE, null, null);
             Background darkBackground = new Background(darkBackgroundFill);
             root.setBackground(darkBackground);
-        }*/
+        }
 
         AnimationTimer timer = new AnimationTimer(){
             @Override
@@ -88,7 +65,7 @@ public class SpaceInvadersApplication extends LoginApp{
 
         firstLevel();
 
-        return stackPane;
+        return root;
     }
 
     private void firstLevel(){
@@ -105,21 +82,9 @@ public class SpaceInvadersApplication extends LoginApp{
     }
 
     private void update(){
-        if (darkMode) {
-            BackgroundFill darkBackgroundFill = new BackgroundFill(Color.BLACK, null, null);
-            Background darkBackground = new Background(darkBackgroundFill);
-            root.setBackground(darkBackground);
-        }
-        else{
-            BackgroundFill darkBackgroundFill = new BackgroundFill(Color.WHITE, null, null);
-            Background darkBackground = new Background(darkBackgroundFill);
-            root.setBackground(darkBackground);
-        }
         if(!gamePaused){
 
             t += 0.016;
-
-            if (!gameOver){gameStatus.setText("Score: " + score);}
 
             if (moveLeft){
                 player.moveLeft();
@@ -140,9 +105,6 @@ public class SpaceInvadersApplication extends LoginApp{
                             gameOver(false);
                             s.dead = true;
                         }
-                        if(gameOver){
-                            s.dead = true;
-                        }
                         break;
                     case "playerbullet":
                         s.moveUp();
@@ -151,21 +113,14 @@ public class SpaceInvadersApplication extends LoginApp{
                             if (s.getBoundsInParent().intersects(enemy.getBoundsInParent())){
                                 enemy.dead = true;
                                 s.dead = true;
-                                enemiesRemaining -= 1;
-                                score += 100;
-                                if(enemiesRemaining == 0){gameOver(true);}
                             }
                         });
                         sprites().stream().filter(e -> e.type.equals("enemybullet")).forEach(enemy -> {
                             if (s.getBoundsInParent().intersects(enemy.getBoundsInParent())){
                                 enemy.dead = true;
                                 s.dead = true;
-                                score += 50;
                             }
                         });
-                        if(gameOver){
-                            s.dead = true;
-                        }
 
                         break;
                     case "enemy":
@@ -188,9 +143,6 @@ public class SpaceInvadersApplication extends LoginApp{
                         }
                         if (s.getTranslateY() > 770){
                             gameOver(false);
-                            s.dead = true;
-                        }
-                        if(gameOver){
                             s.dead = true;
                         }
                         break;
@@ -221,48 +173,24 @@ public class SpaceInvadersApplication extends LoginApp{
         gamePaused = !gamePaused;
     }
 
-    private void restartGame(){
-        gameOver = false;
-        player.dead = false;
-        score = 0;
-        enemiesRemaining = 5;
-        root.getChildren().remove(player);
-        firstLevel();
-        root.getChildren().add(player);
-    }
-
-    private void gameOver(boolean win) {
-        if (!win) {
-            gameStatus.setText("You Lose! Score: " + score + " Try again: press ESC");
+    private void gameOver(boolean win){
+        if (!win){
             System.out.println("Loser");
-        } else {
-            gameStatus.setText("You Win! Score: " + score + " Try again: press ESC");
+        }
+        else{
             System.out.println("Winner");
         }
-        gameOver = true;
-        updateScoreInFirestore(score); // Call to update the score in Firestore
     }
-
-    private void updateScoreInFirestore(int finalScore) {
-        if (UserSession.getInstance().getUserEmail() != null) {
-            scoreCollector.updateGameScore("SpaceInvaders", finalScore);
-        } else {
-            System.out.println("User email not set. Cannot update score.");
-        }
-    }
-
 
     private void shoot(Sprite who){
-        /*if (darkMode){
+        if (darkMode){
             Sprite s = new Sprite((int)who.getTranslateX() + 20,(int) who.getTranslateY(), 5, 20,who.type + "bullet", Color.WHITE);
             root.getChildren().add(s);
         }
         else{
             Sprite t = new Sprite((int)who.getTranslateX() + 20,(int) who.getTranslateY(), 5, 20,who.type + "bullet", Color.BLACK);
             root.getChildren().add(t);
-        }*/
-        Sprite s = new Sprite((int)who.getTranslateX() + 20,(int) who.getTranslateY(), 5, 20,who.type + "bullet", Color.DARKGREY);
-        root.getChildren().add(s);
+        }
     }
 
     private boolean canShoot() {
@@ -275,6 +203,7 @@ public class SpaceInvadersApplication extends LoginApp{
         FXMLLoader fxmlLoader = new FXMLLoader(SpaceInvadersApplication.class.getResource("/org/openjfx/demo5/spaceinvaders_game.fxml"));
         Scene scene = new Scene(createContent());//fxmlLoader.load(), 320, 240);
 
+
         scene.setOnKeyPressed(e -> {
             switch (e.getCode()){
                 case A:
@@ -285,12 +214,8 @@ public class SpaceInvadersApplication extends LoginApp{
                     //player.moveRight();
                     moveRight = true;
                     break;
-                case R:
-                    darkMode = !darkMode;
-                    break;
                 case ESCAPE:
-                    if (!gameOver){pauseGame();}
-                    else{restartGame();}
+                    pauseGame();
                     break;
                 case SPACE:
                     if (!player.dead && canShoot() && !gamePaused){

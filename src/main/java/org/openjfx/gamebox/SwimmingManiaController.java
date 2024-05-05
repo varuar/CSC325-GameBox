@@ -62,8 +62,9 @@ public class SwimmingManiaController {
     private Image race2Image;
     private boolean toggleBackground = false;
     private Timeline gameLoop;
+
     private final String BEST_TIME_FILE = "best_time.txt";
-    private ScoreCollectionController scoreCollector;
+
     private List<ImageView> obstacles = new ArrayList<>();
 
     public void initialize() {
@@ -72,7 +73,6 @@ public class SwimmingManiaController {
         race2Image = new Image(getClass().getResourceAsStream("/org/openjfx/gamebox/carimages/race2.png"));
         backgroundImage.setImage(race1Image);
         loadBestTime();
-        scoreCollector = new ScoreCollectionController();
     }
 
     private void loadBestTime() {
@@ -228,26 +228,24 @@ public class SwimmingManiaController {
         rootPane.getChildren().add(obstacle);
         obstacles.add(obstacle);
     }
-    private void endGame() {
 
+
+
+    private void endGame() {
         gameStarted = false;
         gameLoop.stop();
-        int finalTime = timeSeconds;
-
-        if (scoreCollector != null) {
-            scoreCollector.updateGameScore("SwimmingScore", finalTime);
-        } else {
-            System.err.println("Score collector is not initialized.");
-        }
+        // Show end game options or any other desired action
         startButton.setVisible(true);
         stopButton.setVisible(false);
         restartButton.setVisible(false);
         resumeButton.setVisible(false);
         endGameButton.setVisible(false);
+        saveBestTime();
+        // Reset to start screen
         timerLabel.setText("0:00");
-        leaderboardLabel.setText("Best Time: " + (finalTime));
-        loadBestTime();
+        leaderboardLabel.setText("Best Time: " + bestTimeSeconds / 60 + ":" + String.format("%02d", bestTimeSeconds % 60));
     }
+
     @FXML
     public void handlePlayButtonClick() {
         if (!gameStarted) {
@@ -356,4 +354,3 @@ public class SwimmingManiaController {
         leaderboardLabel.setText("Best Time: " + bestTimeSeconds / 60 + ":" + String.format("%02d", bestTimeSeconds % 60));
     }
 }
-    
