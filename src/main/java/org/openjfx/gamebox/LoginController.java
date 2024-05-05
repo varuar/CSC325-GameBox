@@ -27,6 +27,19 @@ public class LoginController {
     private TextField emailField;
 
     @FXML
+    private Button leaderboardButton;
+
+    @FXML
+    private void showLeaderboard(ActionEvent event) throws IOException {
+        switchToLeaderboard();
+    }
+
+    private void switchToLeaderboard() throws IOException {
+        LoginApp.setRoot("LeaderboardPage");
+    }
+
+
+    @FXML
     protected void signInUser() {
         String email = emailField.getText().trim();
         String password = passwordField.getText();
