@@ -47,7 +47,7 @@ public class LoginController {
         Firestore db = LoginApp.fstore;
 
         // Query Firestore to find a user document by email
-        ApiFuture<QuerySnapshot> future = db.collection("users")
+        ApiFuture<QuerySnapshot> future = db.collection("users2")
                 .whereEqualTo("email", email)
                 .get();
 
