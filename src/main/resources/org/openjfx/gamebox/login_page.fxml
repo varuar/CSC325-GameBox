@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane prefHeight="400.0" prefWidth="501.0" style="-fx-background-color: #00FF00;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.LoginController">
+<Pane prefHeight="400.0" prefWidth="501.0" style="-fx-background-color: #00FF00;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.LoginController">
+    <ImageView fitHeight="519.0" fitWidth="607.0" layoutX="-55.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@images/2-arcade-machine-screen-allan-swart.jpg" />
+        </image>
+    </ImageView>
     <Label layoutX="235.0" layoutY="102.0" text="Email" />
-    <Label layoutX="224.0" layoutY="192.0" text="Password" />
-    <TextField fx:id="emailField" alignment="CENTER" layoutX="176.0" layoutY="144.0" promptText="email" />
-    <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="176.0" layoutY="229.0" promptText="password" />
-    <Button fx:id="loginButton" layoutX="165.0" layoutY="295.0" mnemonicParsing="false" onAction="#signInUser" text="Login" />
-    <Label layoutX="127.0" layoutY="14.0" prefHeight="25.0" prefWidth="267.0" text="GameBox">
+    <Label layoutX="223.0" layoutY="164.0" text="Password" />
+    <TextField fx:id="emailField" alignment="CENTER" layoutX="174.0" layoutY="127.0" promptText="email" />
+    <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="173.0" layoutY="188.0" promptText="password" />
+    <Button fx:id="leaderboardButton" layoutX="209.0" layoutY="340.0" mnemonicParsing="false" onAction="#showLeaderboard" text="Leaderboard" />
+    <Button fx:id="loginButton" layoutX="173.0" layoutY="238.0" mnemonicParsing="false" onAction="#signInUser" text="Login" />
+    <Label layoutX="130.0" layoutY="27.0" prefHeight="25.0" prefWidth="267.0" text="GameBox">
         <font>
-            <Font size="60.0" />
+            <Font size="52.0" />
         </font>
     </Label>
-    <Button fx:id="Regsiterpgebtn" layoutX="287.0" layoutY="295.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Register" />
+    <Button fx:id="Regsiterpgebtn" layoutX="262.0" layoutY="238.0" mnemonicParsing="false" onAction="#switchToPrimary" text="Register" />
 </Pane>

@@ -26,7 +26,8 @@ public class LoginApp extends Application {
         fstore = contxtFirebase.firebase();
         fauth = FirebaseAuth.getInstance();
 
-        scene = new Scene(loadFXML("login_page"), 640, 480);
+        scene = new Scene(loadFXML("login_page"));
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

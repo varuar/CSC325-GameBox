@@ -13,4 +13,9 @@ module org.openjfx.gamebox {
 
     opens org.openjfx.gamebox to javafx.fxml;
     exports org.openjfx.gamebox;
+    exports Chess;
+    opens Chess to javafx.fxml;
 }
+
+
+
