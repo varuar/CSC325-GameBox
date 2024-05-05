@@ -62,11 +62,8 @@ public class SwimmingManiaController {
     private Image race2Image;
     private boolean toggleBackground = false;
     private Timeline gameLoop;
-
-    private ScoreCollectionController scoreCollector = new ScoreCollectionController();
-
     private final String BEST_TIME_FILE = "best_time.txt";
-
+    private ScoreCollectionController scoreCollector;
     private List<ImageView> obstacles = new ArrayList<>();
 
     public void initialize() {
@@ -75,6 +72,7 @@ public class SwimmingManiaController {
         race2Image = new Image(getClass().getResourceAsStream("/org/openjfx/gamebox/carimages/race2.png"));
         backgroundImage.setImage(race1Image);
         loadBestTime();
+        scoreCollector = new ScoreCollectionController();
     }
 
     private void loadBestTime() {
@@ -230,37 +228,27 @@ public class SwimmingManiaController {
         rootPane.getChildren().add(obstacle);
         obstacles.add(obstacle);
     }
-
-
     private void endGame() {
+
         gameStarted = false;
         gameLoop.stop();
-
-        // Fetch the final game time
         int finalTime = timeSeconds;
 
-        // Use ScoreCollectionController to update the score in Firestore
         if (scoreCollector != null) {
-            scoreCollector.updateGameScore("SwimmingRecordTime", finalTime);
+            scoreCollector.updateGameScore("SwimmingScore", finalTime);
         } else {
             System.err.println("Score collector is not initialized.");
         }
-
         startButton.setVisible(true);
         stopButton.setVisible(false);
         restartButton.setVisible(false);
         resumeButton.setVisible(false);
         endGameButton.setVisible(false);
-
-        // Reset the game timer on the UI
         timerLabel.setText("0:00");
         leaderboardLabel.setText("Best Time: " + (finalTime));
-
         loadBestTime();
     }
-
-
-        @FXML
+    @FXML
     public void handlePlayButtonClick() {
         if (!gameStarted) {
             gameStarted = true;
@@ -361,15 +349,6 @@ public class SwimmingManiaController {
         if (timeSeconds < bestTimeSeconds) {
             bestTimeSeconds = timeSeconds;
             updateLeaderboard();
-            updateScoreInFirestore(timeSeconds);
-        }
-    }
-
-    private void updateScoreInFirestore(int finalScore) {
-        if (UserSession.getInstance().getUserEmail() != null) {
-            scoreCollector.updateGameScore("SwimmingMania", finalScore);
-        } else {
-            System.out.println("User email not set. Cannot update score.");
         }
     }
 
@@ -377,3 +356,4 @@ public class SwimmingManiaController {
         leaderboardLabel.setText("Best Time: " + bestTimeSeconds / 60 + ":" + String.format("%02d", bestTimeSeconds % 60));
     }
 }
+    
