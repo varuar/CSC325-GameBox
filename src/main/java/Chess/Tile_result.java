@@ -1,4 +1,4 @@
-package org.openjfx.gamebox;
+package Chess;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

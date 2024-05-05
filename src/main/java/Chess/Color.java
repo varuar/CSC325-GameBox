@@ -1,4 +1,4 @@
-package org.openjfx.gamebox;
+package Chess;
 
 
 public enum Color {
