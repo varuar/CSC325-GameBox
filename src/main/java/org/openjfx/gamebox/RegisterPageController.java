@@ -60,9 +60,14 @@ public class RegisterPageController {
             userData.put("password", registerpasswordTextField.getText()); // Note: Storing passwords in plain text is not recommended
             userData.put("phone", registerphoneTextField.getText());
             userData.put("displayName", registernameTextField.getText());
+            userData.put("SpaceInvadersScore", "0");
+            userData.put("SwimmingScore", "0");
+            userData.put("TileGameScore", "0");
+            userData.put("ChessScore", "0");
+
 
             // Add a new document with the user UID as the document ID
-            db.collection("users").document(userRecord.getUid()).set(userData);
+            db.collection("users2").document(userRecord.getUid()).set(userData);
 
             return true;
         } catch (FirebaseAuthException ex) {
