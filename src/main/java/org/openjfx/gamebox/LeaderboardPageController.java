@@ -7,10 +7,18 @@ import com.google.cloud.firestore.QuerySnapshot;
 import com.google.firebase.cloud.FirestoreClient;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,7 +30,8 @@ public class LeaderboardPageController {
     private TableColumn<UserScore, String> nameColumn;
     @FXML
     private TableColumn<UserScore, Integer> tileGameBestTimeScoreColumn, chessScoreColumn, spaceInvadersScoreColumn, swimmingScoreColumn, tileGameScoreColumn;
-
+    @FXML
+    private Button leaderboardback;
     private ExecutorService executorService = Executors.newCachedThreadPool();
 
     public void initialize() {
@@ -78,6 +87,7 @@ public class LeaderboardPageController {
         }
         return null;
     }
+
     public static class UserScore {
         private String displayName;
         private Integer tileGameBestTimeScore;
@@ -95,17 +105,52 @@ public class LeaderboardPageController {
             this.tileGameScore = tileGameScore;
         }
 
-        public String getDisplayName() { return displayName; }
-        public Integer getTileGameBestTimeScore() { return tileGameBestTimeScore; }
-        public Integer getChessScore() { return chessScore; }
-        public Integer getSpaceInvadersScore() { return spaceInvadersScore; }
-        public Integer getSwimmingScore() { return swimmingScore; }
-        public Integer getTileGameScore() { return tileGameScore; }
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        public Integer getTileGameBestTimeScore() {
+            return tileGameBestTimeScore;
+        }
+
+        public Integer getChessScore() {
+            return chessScore;
+        }
+
+        public Integer getSpaceInvadersScore() {
+            return spaceInvadersScore;
+        }
+
+        public Integer getSwimmingScore() {
+            return swimmingScore;
+        }
+
+        public Integer getTileGameScore() {
+            return tileGameScore;
+        }
     }
 
     public void shutdown() {
         if (!executorService.isShutdown()) {
             executorService.shutdown();
+        }
+    }
+
+    @FXML
+    public void rtBackPg(ActionEvent event) {
+        // Load the FXML file for the login page
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("login_page.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            // Access the current window
+            Stage stage = (Stage) leaderboardback.getScene().getWindow();
+
+            // Set the new scene to the stage
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
