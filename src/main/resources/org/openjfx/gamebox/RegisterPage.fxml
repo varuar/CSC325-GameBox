@@ -4,17 +4,43 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="476.0" prefWidth="570.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.RegisterPageController">
+<VBox alignment="CENTER" prefHeight="476.0" prefWidth="570.0" spacing="20.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.RegisterPageController">
     <children>
-        <Label text="Welcome!" />
+        <Label text="Welcome!">
+            <font>
+                <Font size="24.0" />
+            </font></Label>
         <TextField fx:id="registeremailTextField" promptText="Email Address" />
         <TextField fx:id="registernameTextField" promptText="Name" />
         <TextField fx:id="registerphoneTextField" promptText="Phone Number" />
         <TextField fx:id="registerpasswordTextField" promptText="Password" />
         <Button fx:id="registrationButton" mnemonicParsing="false" onAction="#registerButtonClicked" text="Register" />
-        <Button fx:id="goBackbtn" mnemonicParsing="false" text="SignInPage" onAction="#goBackToLoginPage" />
+        <Button fx:id="goBackbtn" mnemonicParsing="false" onAction="#goBackToLoginPage" text="SignInPage" />
+        <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="48.0" prefWidth="451.0">
+            <children>
+                <ImageView fitHeight="143.0" fitWidth="116.0" nodeOrientation="RIGHT_TO_LEFT">
+                    <image>
+                        <Image url="@images/Arcade-Machine-PNG-Image.png" />
+                    </image>
+                </ImageView>
+                <HBox prefHeight="143.0" prefWidth="427.0">
+                    <children>
+                        <TextField alignment="CENTER" opacity="0.59" prefHeight="84.0" prefWidth="298.0" style="-fx-background-color: #00000; -fx-border-color: #ADD8E6;" text="GET READY TO HAVE FUN" />
+                    </children>
+                </HBox>
+                <ImageView fitHeight="143.0" fitWidth="116.0">
+                    <image>
+                        <Image url="@images/Arcade-Machine-PNG-Image.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </HBox>
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

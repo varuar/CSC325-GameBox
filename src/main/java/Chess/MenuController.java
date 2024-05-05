@@ -1,4 +1,4 @@
-package org.openjfx.gamebox;
+package Chess;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;

@@ -27,6 +27,19 @@ public class LoginController {
     private TextField emailField;
 
     @FXML
+    private Button leaderboardButton;
+
+    @FXML
+    private void showLeaderboard(ActionEvent event) throws IOException {
+        switchToLeaderboard();
+    }
+
+    private void switchToLeaderboard() throws IOException {
+        LoginApp.setRoot("LeaderboardPage");
+    }
+
+
+    @FXML
     protected void signInUser() {
         String email = emailField.getText().trim();
         String password = passwordField.getText();
@@ -34,7 +47,7 @@ public class LoginController {
         Firestore db = LoginApp.fstore;
 
         // Query Firestore to find a user document by email
-        ApiFuture<QuerySnapshot> future = db.collection("users2")
+        ApiFuture<QuerySnapshot> future = db.collection("users")
                 .whereEqualTo("email", email)
                 .get();
 
@@ -47,6 +60,7 @@ public class LoginController {
                         String storedPassword = document.getString("password");
                         if (password.equals(storedPassword)) {
                             System.out.println("Sign-in successful.");
+                            UserSession.getInstance().setUserEmail(email); // Set user email in session
                             try {
                                 switchtoSelect();
                             } catch (IOException e) {

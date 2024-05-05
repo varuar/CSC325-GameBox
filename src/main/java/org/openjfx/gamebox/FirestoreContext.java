@@ -11,20 +11,29 @@ import java.io.IOException;
 
 public class FirestoreContext {
 
-    public Firestore firebase() {
-        try {
-            FileInputStream serviceAccount =
-                    new FileInputStream("src/main/resources/org/openjfx/gamebox/key.json");
+    private static Firestore dbInstance = null;
 
-            FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .build();
-
-            FirebaseApp.initializeApp(options);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    public static Firestore firebase() {
+        if (dbInstance == null) {
+            synchronized (FirestoreContext.class) {
+                if (dbInstance == null) {
+                    try {
+                        if (FirebaseApp.getApps().isEmpty()) {
+                            FileInputStream serviceAccount = new FileInputStream("src/main/resources/org/openjfx/gamebox/key.json");
+                            FirebaseOptions options = new FirebaseOptions.Builder()
+                                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                                    .build();
+                            FirebaseApp.initializeApp(options);
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                        System.out.println("Error initializing Firebase");
+                        return null;
+                    }
+                    dbInstance = FirestoreClient.getFirestore();
+                }
+            }
         }
-
-        return FirestoreClient.getFirestore();
+        return dbInstance;
     }
 }

@@ -1,4 +1,4 @@
-package Chess;
+package org.openjfx.gamebox;
 
 import java.io.IOException;
 import javafx.animation.FadeTransition;

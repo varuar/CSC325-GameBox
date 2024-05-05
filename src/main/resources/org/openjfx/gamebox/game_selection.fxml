@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="10" prefHeight="342.0" prefWidth="410.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.GameSelectionController">
+<GridPane gridLinesVisible="true" hgap="10" prefHeight="456.0" prefWidth="410.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.GameSelectionController">
     <ImageView fitHeight="201.0" fitWidth="200.0" GridPane.rowIndex="1">
         <image>
             <Image url="@images/image4.jpg" />
@@ -19,7 +19,7 @@
         </image>
     </ImageView>
     <!-- Chess -->
-    <Button fx:id="game1Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="83.0" prefWidth="139.0" text="Chess" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Button fx:id="game1Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" opacity="0.69" prefHeight="25.0" prefWidth="208.0" text="Chess" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <ImageView fitHeight="202.0" fitWidth="200.0">
         <image>
             <Image url="@images/image3.jpg" />
@@ -27,7 +27,7 @@
     </ImageView>
 
     <!-- Space Invaders -->
-    <Button fx:id="game3Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="41.0" prefWidth="124.0" text="Space Invaders" />
+    <Button fx:id="game3Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" opacity="0.69" prefHeight="0.0" prefWidth="200.0" text="Space Invaders" />
     <ImageView fitHeight="204.0" fitWidth="200.0" GridPane.columnIndex="1">
         <image>
             <Image url="@images/image2.jpg" />
@@ -35,16 +35,19 @@
     </ImageView>
 
     <!-- Swimming Mania -->
-    <Button fx:id="game4Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="76.0" prefWidth="170.0" text="Swimming Mania" GridPane.rowIndex="1" />
+    <Button fx:id="game4Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" opacity="0.69" prefHeight="25.0" prefWidth="211.0" text="Swimming Mania" GridPane.rowIndex="1" />
 
     <!-- Tile Game -->
-    <Button fx:id="game2Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" prefHeight="30.0" prefWidth="126.0" text="Tile Game" GridPane.columnIndex="1" />
+    <Button fx:id="game2Button" alignment="CENTER" contentDisplay="CENTER" onAction="#handleGameSelection" opacity="0.69" prefHeight="10.0" prefWidth="200.0" text="Tile Game" GridPane.columnIndex="1" />
+    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Leaderboard" GridPane.rowIndex="2" />
+    <Button mnemonicParsing="false" prefHeight="79.0" prefWidth="200.0" text="Login Page" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <columnConstraints>
         <ColumnConstraints prefWidth="200.0" />
         <ColumnConstraints prefWidth="200.0" />
     </columnConstraints>
     <rowConstraints>
+        <RowConstraints prefHeight="200.0" />
         <RowConstraints prefHeight="200.0" />
         <RowConstraints prefHeight="200.0" />
     </rowConstraints>
