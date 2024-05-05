@@ -21,7 +21,7 @@ public class ScoreCollectionController {
             return;
         }
 
-        ApiFuture<QuerySnapshot> future = db.collection("users2")
+        ApiFuture<QuerySnapshot> future = db.collection("users")
                 .whereEqualTo("email", email)
                 .get();
 
