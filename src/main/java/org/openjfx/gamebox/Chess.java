@@ -236,6 +236,10 @@ class BoardGrid extends GridPane {
         this.stage = stage;
         initModel();
         displayBackground();
+        Alert a = new Alert(AlertType.NONE);
+        a.setAlertType(AlertType.INFORMATION);
+        a.setContentText(UserSession.getInstance().getUserEmail()+", You're whites");
+        a.show();
     }
 
     private void displayBackground() {
@@ -258,13 +262,9 @@ class BoardGrid extends GridPane {
                 }
             }
         }
-        String uid = FirebaseAuth.getInstance().getCurrentUser();
-        System.out.println("details of user: "+uid);
 
-        Alert a = new Alert(AlertType.NONE);
-        a.setAlertType(AlertType.INFORMATION);
-        a.setContentText("You're whites");
-        a.show();
+
+
     }
 
     private Image getImage(String str) {
