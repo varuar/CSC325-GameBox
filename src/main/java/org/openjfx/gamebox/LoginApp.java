@@ -1,8 +1,6 @@
 package org.openjfx.gamebox;
 
-import com.google.cloud.firestore.*;
 import com.google.cloud.firestore.Firestore;
-import com.google.firebase.auth.*;
 import com.google.firebase.auth.FirebaseAuth;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +25,7 @@ public class LoginApp extends Application {
         fauth = FirebaseAuth.getInstance();
 
         scene = new Scene(loadFXML("login_page"));
-        stage.setResizable(false);
+       // stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

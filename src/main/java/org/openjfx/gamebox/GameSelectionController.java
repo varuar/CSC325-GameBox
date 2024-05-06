@@ -102,9 +102,11 @@ public class GameSelectionController {
             Parent root = loader.load();
 
             Stage stage = new Stage();
+
             stage.setScene(new Scene(root));
             stage.setTitle(gameTitle);
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
