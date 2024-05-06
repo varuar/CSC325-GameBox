@@ -13,6 +13,10 @@ public class UserSession {
         return instance;
     }
 
+    public static void resetInstance() {
+        instance = null;
+    }
+
     public String getUserEmail() {
         return userEmail;
     }

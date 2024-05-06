@@ -13,6 +13,7 @@ public class FirestoreContext {
 
     private static Firestore dbInstance = null;
 
+    //Firebase connection
     public static Firestore firebase() {
         if (dbInstance == null) {
             synchronized (FirestoreContext.class) {

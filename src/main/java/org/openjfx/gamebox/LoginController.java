@@ -38,7 +38,7 @@ public class LoginController {
         LoginApp.setRoot("LeaderboardPage");
     }
 
-
+//User sign in which checks the email and password from the firebase
     @FXML
     protected void signInUser() {
         String email = emailField.getText().trim();

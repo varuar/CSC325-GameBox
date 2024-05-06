@@ -82,7 +82,7 @@ public class LeaderboardPageController {
                 return Integer.parseInt((String) value);
             } catch (NumberFormatException e) {
                 System.err.println("Failed to parse integer from string for field " + field + ": " + value);
-                return null;  // Or handle this case as you see fit
+                return null;
             }
         }
         return null;
