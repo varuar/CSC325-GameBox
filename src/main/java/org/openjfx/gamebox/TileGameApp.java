@@ -48,14 +48,14 @@ public class TileGameApp extends LoginApp {
     private Boolean[][] tileVisibility;
     private int SelectedTileRow = -1;
     private int SelectedTileCol = -1;
-    private boolean gameEnded = false;  // Flag to track if the game has ended
+    private boolean gameEnded = false;
 
     // Array of buttons for easier access
     private Button[][] buttons;
 
     // Array representing valid paths in the game grid
     private int[][] pathGrid;
-  //  int remainingTime = 10;  // Timer for game countdown
+
 
     public TileGameApp() {
     }
@@ -63,7 +63,7 @@ public class TileGameApp extends LoginApp {
     private void setupTimer() {
         gameTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             if (remainingTime == 0) {
-                gameTimer.stop();  // Stop the timer to prevent further decrements
+                gameTimer.stop();
                 showResult("Time Out! Play Again");
             } else {
                 remainingTime--;
@@ -75,16 +75,16 @@ public class TileGameApp extends LoginApp {
     }
 
     private void showResult(String message) {
-        gameTimer.stop();  // Ensure the timer is stopped when showing results
+        gameTimer.stop();
 
         // Update the score in Firestore only once per game end
         if (!gameEnded) {
-            int finalTime = 10 - remainingTime;  // Assuming 10 is the total game time
+            int finalTime = 10 - remainingTime;
             scoreCollector.updateGameScore("TileGameBestTime", finalTime);
-            gameEnded = true;  // Mark the game as ended
+            gameEnded = true;
         }
 
-        // UI code to display results, ensure stage is handled correctly
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("tile_finish.fxml"));
             Parent summaryRoot = loader.load();
@@ -104,13 +104,6 @@ public class TileGameApp extends LoginApp {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    // Method to handle game start or restart
-    public void startOrRestartGame() {
-        remainingTime = 10;  // Reset the timer
-        gameEnded = false;  // Reset game end flag
-        setupTimer();  // Re-setup or restart the timer
     }
 
 

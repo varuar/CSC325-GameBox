@@ -19,7 +19,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 //https://github.com/himanshusandha/JAVA-Racing-Game
-public class SwimmingManiaController {
+public class SwimmingManiaController extends LoginApp {
 
     @FXML
     private AnchorPane rootPane;

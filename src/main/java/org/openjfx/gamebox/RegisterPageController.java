@@ -57,7 +57,7 @@ public class RegisterPageController {
             Firestore db = FirestoreClient.getFirestore();  // Get Firestore instance
             Map<String, Object> userData = new HashMap<>();
             userData.put("email", registeremailTextField.getText());
-            userData.put("password", registerpasswordTextField.getText()); // Note: Storing passwords in plain text is not recommended
+            userData.put("password", registerpasswordTextField.getText());
             userData.put("phone", registerphoneTextField.getText());
             userData.put("displayName", registernameTextField.getText());
             userData.put("SpaceInvadersScore", "0");

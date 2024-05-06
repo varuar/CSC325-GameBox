@@ -14,7 +14,7 @@ public class UserSession {
     }
 
     public static void resetInstance() {
-        instance = null; // This will effectively reset the singleton
+        instance = null;
     }
 
     public String getUserEmail() {

@@ -27,7 +27,7 @@ public class Tile_result {
         Button[] btns = new Button[]{this.playAgain, this.close};
 
         for (int j = 0; j < 2; j++) {
-            final int finalJ = j; // effectively final variable
+            final int finalJ = j;
             btns[j].setOnMouseEntered((e) -> {
                 btns[finalJ].setStyle("-fx-background-color: #1e1e94; -fx-border-radius: 10; -fx-border-color: #1e1e94; -fx-background-radius: 10");
             });
