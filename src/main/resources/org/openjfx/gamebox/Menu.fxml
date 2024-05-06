@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="80.0" style="-fx-background-color: #9fd3c7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Chess.MenuController">
+<VBox fx:id="root" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="80.0" style="-fx-background-color: #9fd3c7;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.gamebox.MenuController">
    <children>
       <Button fx:id="playButton" maxHeight="50.0" maxWidth="150.0" mnemonicParsing="false" onAction="#play" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #ececec;" text="PLAY" textFill="#385170">
          <font>
