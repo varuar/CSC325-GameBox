@@ -1637,9 +1637,12 @@ class TextView implements View {
     private final String ANSI_RESET = "\u001B[0m";
     public static final String WHITE_BACKGROUND_BRIGHT  = "\033[0;107m";
     public static final String BLACK_BRIGHT = "\033[0;90m";
+    private ScoreCollectionController scoreCollector;
 
     public TextView(Model model) {
+
         this.model = model;
+        scoreCollector = new ScoreCollectionController();
     }
 
 
@@ -1701,8 +1704,10 @@ class TextView implements View {
     public void displayWinner() {
         if (model.getCurrentPlayer().getColor() == Color.BLACK) {
             System.out.println("Black won.");
+            scoreCollector.updateGameScore("Chess", 100);
         } else {
             System.out.println("White won.");
+            scoreCollector.updateGameScore("Chess", 100);
         }
     }
 
