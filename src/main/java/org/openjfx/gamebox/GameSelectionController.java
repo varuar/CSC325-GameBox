@@ -22,6 +22,11 @@ public class GameSelectionController {
 
     @FXML
     private Button game4Button;
+    @FXML
+    private Button rtLeader;
+
+    @FXML
+    private Button rtLogin;
 
     @FXML
     protected void initialize() {
@@ -53,6 +58,36 @@ public class GameSelectionController {
                 System.out.println("Invalid game selection");
         }
     }
+    @FXML
+    void handleReturnLeader(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LeaderboardPage.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) rtLeader.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Leaderboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleReturnLogin(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login_page.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) rtLogin.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Login Page");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadSpaceInvadersGame(String gameTitle) throws IOException {
         SpaceInvadersApplication spaceInvadersApp = new SpaceInvadersApplication();
         Stage stage = new Stage();
